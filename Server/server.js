@@ -4,7 +4,7 @@ import mysql from 'mysql2'
 
 const app = express();
 app.use(cors());
-// app.use(express.json())
+app.use(express.json())
 
 const db = mysql.createConnection({
     host:'localhost',
@@ -29,17 +29,21 @@ app.get('/get',(req,res) => {
     })
 })
 
-// app.post('/saveUser',(req,res) => {
-//     console.log(req.body);
-//      const sql = "INSERT INTO users(`ID`name`,`address`,`age`) VALUES (?,?,?)";
-//      const values = [
+app.post('/saveUser',(req,res) => {
+    console.log(req.body)
+     const sql = "insert into users(id,name,address,age)values(?,?,?,?)";
+    // const name = req.body.name;
+    // const id = req.body.id;
+    // const address = req.body.address;
+    // const age = req.body.age;
 
-//      ]
-//      db.query(sql, [], (error,result)=>{
-//         if(error) return res.json(error);
-//         return res.json(result);
-//      })
-// })
+    const{id,name,address,age} = req.body;
+
+     db.query(sql,[id,name,address,age], (error,result)=>{
+        if(error) return res.json(error);
+        return res.json(result);
+     })
+})
 
 app.listen(3000, () =>{
     console.log('Listening..');
