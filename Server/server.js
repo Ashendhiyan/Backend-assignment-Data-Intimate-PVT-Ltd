@@ -60,6 +60,17 @@ app.put('/updateUser/:id',(req,res) => {
     })
 })
 
+//delete users
+
+app.delete('/deleteUser/:id',(req,res) =>{
+    const delid = req.params.id;
+    const sql = "delete from users where id=?"
+
+    db.query(sql,delid,(error,result) =>{
+        if(error) return res.json(error)
+        return res.send("DELETED..");
+    })
+})
 
 
 app.listen(3000, () =>{
