@@ -3,7 +3,6 @@ import db from "../dbConnection/db.js";
 //save user
 export const saveUser = async (req, res) => {
   try {
-    console.log(req.body);
     const sql = "insert into users(id,name,address,age)values(?,?,?,?)";
     const { id, name, address, age } = req.body;
 
