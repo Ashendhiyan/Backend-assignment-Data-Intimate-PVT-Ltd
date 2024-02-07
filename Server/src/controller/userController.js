@@ -45,16 +45,16 @@ export const updateUser = async (req, res) => {
 };
 
 //delete user
-export const deleteUser = async(req,res) =>{
-    try{
-        const delid = req.params.id;
-        const sql = "delete from users where id=?"
-    
-        db.query(sql,delid,(error,result) =>{
-            return res.send("DELETED..");
-        })
-    }catch(error){
-        console.error("Error deliting users:", error);
+export const deleteUser = async (req, res) => {
+  try {
+    const delid = req.params.id;
+    const sql = "delete from users where id=?";
+
+    db.query(sql, delid, (error, result) => {
+      return res.send("DELETED..");
+    });
+  } catch (error) {
+    console.error("Error deliting users:", error);
     res.status(500).json({ error: "Error deliting users" });
-    }
-    }
+  }
+};
